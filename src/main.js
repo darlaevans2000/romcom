@@ -3,6 +3,7 @@ var coverImg = document.querySelector(".cover-image");
 var title = document.querySelector(".cover-title");
 var descriptor1 = document.querySelector(".tagline-1");
 var descriptor2 = document.querySelector(".tagline-2");
+
 var randomButton = document.querySelector(".random-cover-button");
 
 
@@ -31,10 +32,5 @@ function randomBook() {
   title.innerText = titles[getRandomIndex(titles)];
   descriptor1.innerText = descriptors[getRandomIndex(descriptors)];
   descriptor2.innerText = descriptors[getRandomIndex(descriptors)];
-
-  // updateCoverImg.src = randomCoverImage;
-  // updateTitle.innerText = randomTitle;
-  //  updateDescriptor1.innerText = randomDesc1;
-  // updateDescriptor2.innerText = randomDesc2;
   currentCover = new Cover(coverImg.src, title.innerText, descriptor1.innerText, descriptor2.innerText);
 }
