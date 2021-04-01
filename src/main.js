@@ -5,12 +5,13 @@ var descriptor1 = document.querySelector(".tagline-1");
 var descriptor2 = document.querySelector(".tagline-2");
 var form = document.querySelector(".form-view");
 var mainCoverSection = document.querySelector(".main-cover");
+var savedViewSection = document.querySelector(".saved-view");
 //buttons
 var ownCoverButton = document.querySelector(".make-new-button");
 var randomButton = document.querySelector(".random-cover-button");
 var saveCoverButton = document.querySelector(".save-cover-button");
 var homeButton = document.querySelector(".home-button");
-
+var viewSavedButton = document.querySelector(".view-saved-button");
 
 // We've provided a few variables below
 var savedCovers = [
@@ -23,6 +24,7 @@ var currentCover = {};
 window.addEventListener("load", randomBook);
 randomButton.addEventListener("click", randomBook);
 ownCoverButton.addEventListener("click", toggleFormVisibility);
+viewSavedButton.addEventListener("click", toggleSavedVisibility);
 
 // Create your event handlers and other functions here 👇
 
@@ -44,4 +46,9 @@ function toggleFormVisibility() {
   homeButton.classList.remove("hidden");
   randomButton.classList.add("hidden");
   saveCoverButton.classList.add("hidden");
+}
+
+function toggleSavedVisibility() {
+  mainCoverSection.classList.add("hidden");
+  savedViewSection.classList.remove("hidden");
 }
