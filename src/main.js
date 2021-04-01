@@ -8,6 +8,8 @@ var mainCoverSection = document.querySelector(".main-cover");
 //buttons
 var ownCoverButton = document.querySelector(".make-new-button");
 var randomButton = document.querySelector(".random-cover-button");
+var saveCoverButton = document.querySelector(".save-cover-button");
+var homeButton = document.querySelector(".home-button");
 
 
 // We've provided a few variables below
@@ -39,4 +41,7 @@ function randomBook() {
 function toggleFormVisibility() {
   form.classList.remove("hidden");
   mainCoverSection.classList.add("hidden");
+  homeButton.classList.remove("hidden");
+  randomButton.classList.add("hidden");
+  saveCoverButton.classList.add("hidden");
 }
