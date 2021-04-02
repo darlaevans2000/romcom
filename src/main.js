@@ -12,6 +12,13 @@ var randomButton = document.querySelector(".random-cover-button");
 var saveCoverButton = document.querySelector(".save-cover-button");
 var homeButton = document.querySelector(".home-button");
 var viewSavedButton = document.querySelector(".view-saved-button");
+var makeBookButton = document.querySelector(".create-new-book-button");
+
+//form inputs
+var coverField = document.querySelector(".user-cover");
+var titleField = document.querySelector(".user-title");
+var desc1Field = document.querySelector(".user-desc1");
+var desc2Field = document.querySelector(".user-desc2");
 
 // We've provided a few variables below
 var savedCovers = [
@@ -26,6 +33,7 @@ randomButton.addEventListener("click", randomBook);
 ownCoverButton.addEventListener("click", formVisibility);
 viewSavedButton.addEventListener("click", savedVisibility);
 homeButton.addEventListener("click", homeVisibility);
+makeBookButton.addEventListener("click", createNewBook);
 
 // Create your event handlers and other functions here 👇
 
@@ -41,7 +49,7 @@ function randomBook() {
   currentCover = new Cover(coverImg.src, title.innerText, descriptor1.innerText, descriptor2.innerText);
 }
 
-function  pageButtonsMain() {
+function pageButtonsMain() {
   mainCoverSection.classList.add("hidden");
   randomButton.classList.add("hidden");
   homeButton.classList.remove("hidden");
@@ -70,4 +78,23 @@ function homeVisibility() {
   homeButton.classList.add("hidden");
   randomButton.classList.remove("hidden");
   saveCoverButton.classList.remove("hidden");
+}
+
+function createNewBook(event) {
+  event.preventDefault();
+  homeVisibility();
+  mainCoverSection.classList.remove("hidden");
+  var currentURL = window.location.href;
+  var coverValue = coverField.value;
+  var titleValue = titleField.value;
+  var desc1Value = desc1Field.value;
+  var desc2Value = desc2Field.value;
+  covers.push(currentURL);
+  titles.push(titleValue);
+  descriptors.push(desc1Value, desc2Value);
+  currentCover = new Cover(coverValue, titleValue, desc1Value, desc2Value);
+  coverImg.setAttribute("src", coverValue);
+  title.innerText = titleValue;
+  descriptor1.innerText = desc1Value;
+  descriptor2.innerText = desc2Value;
 }
