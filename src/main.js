@@ -51,4 +51,7 @@ function toggleFormVisibility() {
 function toggleSavedVisibility() {
   mainCoverSection.classList.add("hidden");
   savedViewSection.classList.remove("hidden");
+  homeButton.classList.remove("hidden");
+  randomButton.classList.add("hidden");
+  saveCoverButton.classList.add("hidden");
 }
