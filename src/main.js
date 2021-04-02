@@ -25,6 +25,7 @@ window.addEventListener("load", randomBook);
 randomButton.addEventListener("click", randomBook);
 ownCoverButton.addEventListener("click", toggleFormVisibility);
 viewSavedButton.addEventListener("click", toggleSavedVisibility);
+homeButton.addEventListener("click", homeVisibility);
 
 // Create your event handlers and other functions here 👇
 
@@ -55,4 +56,13 @@ function toggleSavedVisibility() {
   randomButton.classList.add("hidden");
   saveCoverButton.classList.add("hidden");
   form.classList.add("hidden");
+}
+
+function homeVisibility() {
+  mainCoverSection.classList.remove("hidden");
+  savedViewSection.classList.add("hidden");
+  form.classList.add("hidden");
+  homeButton.classList.add("hidden");
+  randomButton.classList.remove("hidden");
+  saveCoverButton.classList.remove("hidden");
 }
