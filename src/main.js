@@ -22,7 +22,7 @@ var desc2Field = document.querySelector(".user-desc2");
 
 // We've provided a few variables below
 var savedCovers = [
-  new Cover("http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg", "Sunsets and Sorrows", "sunsets", "sorrows")
+  // new Cover("http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg", "Sunsets and Sorrows", "sunsets", "sorrows")
 ];
 var currentCover = {};
 
@@ -34,7 +34,7 @@ ownCoverButton.addEventListener("click", formVisibility);
 viewSavedButton.addEventListener("click", savedVisibility);
 homeButton.addEventListener("click", homeVisibility);
 makeBookButton.addEventListener("click", createNewBook);
-
+saveCoverButton.addEventListener("click", addToSavedCovers);
 // Create your event handlers and other functions here 👇
 
 function getRandomIndex(array) {
@@ -97,3 +97,9 @@ function createNewBook(event) {
   descriptor1.innerText = desc1Value;
   descriptor2.innerText = desc2Value;
 }
+
+  function addToSavedCovers(){
+    if (!savedCovers.includes(currentCover)) {
+      savedCovers.push(currentCover);
+    }
+  }
