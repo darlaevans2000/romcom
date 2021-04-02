@@ -84,12 +84,11 @@ function createNewBook(event) {
   event.preventDefault();
   homeVisibility();
   mainCoverSection.classList.remove("hidden");
-  var currentURL = window.location.href;
   var coverValue = coverField.value;
   var titleValue = titleField.value;
   var desc1Value = desc1Field.value;
   var desc2Value = desc2Field.value;
-  covers.push(currentURL);
+  covers.push(coverValue);
   titles.push(titleValue);
   descriptors.push(desc1Value, desc2Value);
   currentCover = new Cover(coverValue, titleValue, desc1Value, desc2Value);
