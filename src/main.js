@@ -23,8 +23,8 @@ var currentCover = {};
 // Add your event listeners here 👇
 window.addEventListener("load", randomBook);
 randomButton.addEventListener("click", randomBook);
-ownCoverButton.addEventListener("click", toggleFormVisibility);
-viewSavedButton.addEventListener("click", toggleSavedVisibility);
+ownCoverButton.addEventListener("click", formVisibility);
+viewSavedButton.addEventListener("click", savedVisibility);
 homeButton.addEventListener("click", homeVisibility);
 
 // Create your event handlers and other functions here 👇
@@ -41,27 +41,32 @@ function randomBook() {
   currentCover = new Cover(coverImg.src, title.innerText, descriptor1.innerText, descriptor2.innerText);
 }
 
-function toggleFormVisibility() {
-  form.classList.remove("hidden");
+function  pageButtonsMain() {
   mainCoverSection.classList.add("hidden");
-  homeButton.classList.remove("hidden");
   randomButton.classList.add("hidden");
+  homeButton.classList.remove("hidden");
   saveCoverButton.classList.add("hidden");
 }
 
-function toggleSavedVisibility() {
-  mainCoverSection.classList.add("hidden");
-  savedViewSection.classList.remove("hidden");
-  homeButton.classList.remove("hidden");
-  randomButton.classList.add("hidden");
-  saveCoverButton.classList.add("hidden");
+function hideForm(){
   form.classList.add("hidden");
+}
+
+function formVisibility() {
+  pageButtonsMain();
+  form.classList.remove("hidden");
+}
+
+function savedVisibility() {
+  pageButtonsMain();
+  hideForm();
+  savedViewSection.classList.remove("hidden");
 }
 
 function homeVisibility() {
+  hideForm();
   mainCoverSection.classList.remove("hidden");
   savedViewSection.classList.add("hidden");
-  form.classList.add("hidden");
   homeButton.classList.add("hidden");
   randomButton.classList.remove("hidden");
   saveCoverButton.classList.remove("hidden");
