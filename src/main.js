@@ -57,16 +57,17 @@ function pageButtonsMain() {
   saveCoverButton.classList.add("hidden");
 }
 
-function hideForm(){
+function hideForm() {
   form.classList.add("hidden");
 }
 
 function formVisibility() {
   pageButtonsMain();
   form.classList.remove("hidden");
+  savedViewSection.classList.add("hidden");
 }
 
-function savedPosterGridView(){
+function savedPosterGridView() {
   savedSectionGrid.innerHTML = "";
   for (var i = 0; i < savedCovers.length; i++) {
     savedSectionGrid.innerHTML += `
@@ -86,7 +87,7 @@ function savedVisibility() {
   hideForm();
   savedViewSection.classList.remove("hidden");
   savedPosterGridView();
-  }
+}
 
 function homeVisibility() {
   hideForm();
@@ -99,24 +100,34 @@ function homeVisibility() {
 
 function createNewBook(event) {
   event.preventDefault();
-  homeVisibility();
-  mainCoverSection.classList.remove("hidden");
   var coverValue = coverField.value;
   var titleValue = titleField.value;
   var desc1Value = desc1Field.value;
   var desc2Value = desc2Field.value;
-  covers.push(coverValue);
-  titles.push(titleValue);
-  descriptors.push(desc1Value, desc2Value);
-  currentCover = new Cover(coverValue, titleValue, desc1Value, desc2Value);
-  coverImg.setAttribute("src", coverValue);
-  title.innerText = titleValue;
-  descriptor1.innerText = desc1Value;
-  descriptor2.innerText = desc2Value;
+  if (coverValue && titleValue && desc1Value && desc2Value) {
+    hideForm();
+    mainCoverSection.classList.remove("hidden");
+    savedViewSection.classList.add("hidden");
+    homeButton.classList.add("hidden");
+    randomButton.classList.remove("hidden");
+    saveCoverButton.classList.remove("hidden");
+    covers.push(coverValue);
+    titles.push(titleValue);
+    descriptors.push(desc1Value, desc2Value);
+    currentCover = new Cover(coverValue, titleValue, desc1Value, desc2Value);
+    coverImg.setAttribute("src", coverValue);
+    title.innerText = titleValue;
+    descriptor1.innerText = desc1Value;
+    descriptor2.innerText = desc2Value;
+  } else {
+    alert("Please fill out the full form");
+    return
+  }
+
 }
 
-  function addToSavedCovers(){
-    if (!savedCovers.includes(currentCover)) {
-      savedCovers.push(currentCover);
-    }
+function addToSavedCovers() {
+  if (!savedCovers.includes(currentCover)) {
+    savedCovers.push(currentCover);
   }
+}
