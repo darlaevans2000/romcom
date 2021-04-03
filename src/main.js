@@ -6,6 +6,7 @@ var descriptor2 = document.querySelector(".tagline-2");
 var form = document.querySelector(".form-view");
 var mainCoverSection = document.querySelector(".main-cover");
 var savedViewSection = document.querySelector(".saved-view");
+var savedSectionGrid = document.querySelector(".saved-covers-section");
 //buttons
 var ownCoverButton = document.querySelector(".make-new-button");
 var randomButton = document.querySelector(".random-cover-button");
@@ -65,11 +66,27 @@ function formVisibility() {
   form.classList.remove("hidden");
 }
 
+function savedPosterGridView(){
+  savedSectionGrid.innerHTML = "";
+  for (var i = 0; i < savedCovers.length; i++) {
+    savedSectionGrid.innerHTML += `
+    <section class="mini-cover" id=${savedCovers[i].id}>
+    <img class="cover-image" src="${savedCovers[i].cover}">
+    <h2 class="cover-title">${savedCovers[i].title}</h2>
+    <h3 class="tagline"> A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span> and <span class="tagline-2">${savedCovers[i].tagline2}</span></h3>
+    <img class="price-tag" src="./assets/price.png">
+    <img class="overlay" src="./assets/overlay.png">
+    </section>
+    `
+  };
+};
+
 function savedVisibility() {
   pageButtonsMain();
   hideForm();
   savedViewSection.classList.remove("hidden");
-}
+  savedPosterGridView();
+  }
 
 function homeVisibility() {
   hideForm();
