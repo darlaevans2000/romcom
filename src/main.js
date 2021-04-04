@@ -27,12 +27,12 @@ var savedCovers = [
 var currentCover = {};
 
 //event listeners
-window.addEventListener("load", randomBook);
-randomButton.addEventListener("click", randomBook);
+window.onload = createRandomCover();
+randomButton.addEventListener("click", createRandomCover);
 ownCoverButton.addEventListener("click", formVisibility);
 viewSavedButton.addEventListener("click", savedVisibility);
 homeButton.addEventListener("click", homeVisibility);
-makeBookButton.addEventListener("click", createNewBook);
+makeBookButton.addEventListener("click", createNewCover);
 saveCoverButton.addEventListener("click", addToSavedCovers);
 savedSectionGrid.addEventListener("dblclick", removeSavedCover);
 
@@ -41,7 +41,7 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
 
-function randomBook() {
+function createRandomCover() {
   coverImg.src = covers[getRandomIndex(covers)];
   title.innerText = titles[getRandomIndex(titles)];
   descriptor1.innerText = descriptors[getRandomIndex(descriptors)];
@@ -107,7 +107,7 @@ function pushAndSetFieldValues() {
   descriptor2.innerText = desc2Field.value;
 };
 
-function createNewBook(event) {
+function createNewCover(event) {
   event.preventDefault();
   if (coverField.value && titleField.value && desc1Field.value && desc2Field.value) {
     homeVisibility();
