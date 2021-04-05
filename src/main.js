@@ -1,4 +1,4 @@
-// Create variables targetting the relevant DOM elements here 👇
+// DOM element targets QS
 var coverImg = document.querySelector(".cover-image");
 var title = document.querySelector(".cover-title");
 var descriptor1 = document.querySelector(".tagline-1");
@@ -7,29 +7,26 @@ var form = document.querySelector(".form-view");
 var mainCoverSection = document.querySelector(".main-cover");
 var savedViewSection = document.querySelector(".saved-view");
 var savedSectionGrid = document.querySelector(".saved-covers-section");
-//buttons
+var savedCover = document.querySelector(".mini-cover");
+// buttons QS
 var ownCoverButton = document.querySelector(".make-new-button");
 var randomButton = document.querySelector(".random-cover-button");
 var saveCoverButton = document.querySelector(".save-cover-button");
 var homeButton = document.querySelector(".home-button");
 var viewSavedButton = document.querySelector(".view-saved-button");
 var makeBookButton = document.querySelector(".create-new-book-button");
-var savedCover = document.querySelector(".mini-cover");
-var overlay = document.querySelector(".overlay");
-//form inputs
+// form inputs QS
 var coverField = document.querySelector(".user-cover");
 var titleField = document.querySelector(".user-title");
 var desc1Field = document.querySelector(".user-desc1");
 var desc2Field = document.querySelector(".user-desc2");
 
-// We've provided a few variables below
 var savedCovers = [
-  // new Cover("http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg", "Sunsets and Sorrows", "sunsets", "sorrows")
+   new Cover("http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg", "Sunsets and Sorrows", "sunsets", "sorrows")
 ];
 var currentCover = {};
 
-
-// Add your event listeners here 👇
+//event listeners
 window.addEventListener("load", randomBook);
 randomButton.addEventListener("click", randomBook);
 ownCoverButton.addEventListener("click", formVisibility);
@@ -38,13 +35,8 @@ homeButton.addEventListener("click", homeVisibility);
 makeBookButton.addEventListener("click", createNewBook);
 saveCoverButton.addEventListener("click", addToSavedCovers);
 savedSectionGrid.addEventListener("dblclick", removeSavedCover);
-// if(savedCover){
-//   savedCover.addEventListener("click", function(){ alert("Hello World!"); });
-// }
 
-// savedCover.addEventListener("onmouseover", getSavedId);
-// Create your event handlers and other functions here 👇
-
+//functions
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
@@ -74,7 +66,7 @@ function formVisibility() {
   savedViewSection.classList.add("hidden");
 };
 
-function savedPosterGridView() {
+function savedCoverGridView() {
   savedSectionGrid.innerHTML = "";
   for (var i = 0; i < savedCovers.length; i++) {
     savedSectionGrid.innerHTML += `
@@ -93,7 +85,7 @@ function savedVisibility() {
   pageButtonsMain();
   hideForm();
   savedViewSection.classList.remove("hidden");
-  savedPosterGridView();
+  savedCoverGridView();
 };
 
 function homeVisibility() {
@@ -105,22 +97,22 @@ function homeVisibility() {
   saveCoverButton.classList.remove("hidden");
 };
 
+function pushAndSetFieldValues() {
+  covers.push(coverField.value);
+  titles.push(titleField.value);
+  descriptors.push(desc1Field.value, desc2Field.value);
+  coverImg.setAttribute("src", coverField.value);
+  title.innerText = titleField.value;
+  descriptor1.innerText = desc1Field.value;
+  descriptor2.innerText = desc2Field.value;
+};
+
 function createNewBook(event) {
   event.preventDefault();
-  var coverValue = coverField.value;
-  var titleValue = titleField.value;
-  var desc1Value = desc1Field.value;
-  var desc2Value = desc2Field.value;
-  if (coverValue && titleValue && desc1Value && desc2Value) {
+  if (coverField.value && titleField.value && desc1Field.value && desc2Field.value) {
     homeVisibility();
-    covers.push(coverValue);
-    titles.push(titleValue);
-    descriptors.push(desc1Value, desc2Value);
-    currentCover = new Cover(coverValue, titleValue, desc1Value, desc2Value);
-    coverImg.setAttribute("src", coverValue);
-    title.innerText = titleValue;
-    descriptor1.innerText = desc1Value;
-    descriptor2.innerText = desc2Value;
+    pushAndSetFieldValues();
+    currentCover = new Cover(coverField.value, titleField.value, desc1Field.value, desc2Field.value);
   } else {
     alert("Please fill out the full form");
     return
@@ -140,5 +132,5 @@ function removeSavedCover(event) {
         savedCovers.splice(i, 1);
       }
   }
-  savedPosterGridView();
+  savedCoverGridView();
 };
