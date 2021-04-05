@@ -3,7 +3,7 @@
 Turing 2103 FE Week 2 Paired Project  
 ## Table of Contents
 * [Introduction](#introduction)
-* [Deploy link](#Link)
+* [Links](#Links)
 * [Features](#Features )
 * [Future Additions](#Future-Additions)
 * [Contributors](#contributors)
@@ -11,7 +11,7 @@ Turing 2103 FE Week 2 Paired Project
 
 ## Introduction 
 This is an interactive website where a user can see random covers, make their own cover, save covers, and delete covers.
-## Link  
+## Links  
 - To view the project in action, [click here!](https://darlaevans2000.github.io/romcom/)
 - [DTR](https://gist.github.com/hoomberto/19eb7a2f29300b4c58d76728b924d8be)
 
