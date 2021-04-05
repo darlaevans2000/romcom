@@ -29,7 +29,7 @@ User can double click a cover to delete it from saved covers:
 ![alt text](https://media.giphy.com/media/rOq6OtGwoEetsxBka7/giphy.gif "Delete Covers")
 
   #### *ADDED FEATURE:*
-User must fill out all inputs on form in order to create a cover, an alert will appear if they do not fill the form out completely
+User must fill out all inputs on form in order to create a cover, an alert will appear if they do not fill the form out completely   
 ![alt text](https://media.giphy.com/media/YAsx6rIVX1pEfmj5Y0/giphy.gif "Form validation")
 
 ### Future Additions
