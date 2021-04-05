@@ -9,12 +9,12 @@ var savedViewSection = document.querySelector(".saved-view");
 var savedSectionGrid = document.querySelector(".saved-covers-section");
 var savedCover = document.querySelector(".mini-cover");
 // buttons QS
-var ownCoverButton = document.querySelector(".make-new-button");
-var randomButton = document.querySelector(".random-cover-button");
-var saveCoverButton = document.querySelector(".save-cover-button");
-var homeButton = document.querySelector(".home-button");
-var viewSavedButton = document.querySelector(".view-saved-button");
-var makeBookButton = document.querySelector(".create-new-book-button");
+var coverFormBtn = document.querySelector(".make-new-button");
+var randomBtn = document.querySelector(".random-cover-button");
+var saveCoverBtn = document.querySelector(".save-cover-button");
+var homeBtn = document.querySelector(".home-button");
+var viewSavedCoversBtn = document.querySelector(".view-saved-button");
+var createCoverBtn = document.querySelector(".create-new-book-button");
 // form inputs QS
 var coverField = document.querySelector(".user-cover");
 var titleField = document.querySelector(".user-title");
@@ -27,13 +27,13 @@ var savedCovers = [
 var currentCover = {};
 
 //event listeners
-window.addEventListener("load", randomBook);
-randomButton.addEventListener("click", randomBook);
-ownCoverButton.addEventListener("click", formVisibility);
-viewSavedButton.addEventListener("click", savedVisibility);
-homeButton.addEventListener("click", homeVisibility);
-makeBookButton.addEventListener("click", createNewBook);
-saveCoverButton.addEventListener("click", addToSavedCovers);
+window.onload = createRandomCover();
+randomBtn.addEventListener("click", createRandomCover);
+coverFormBtn.addEventListener("click", formView);
+viewSavedCoversBtn.addEventListener("click", savedView);
+homeBtn.addEventListener("click", homeView);
+createCoverBtn.addEventListener("click", createNewCover);
+saveCoverBtn.addEventListener("click", addToSavedCovers);
 savedSectionGrid.addEventListener("dblclick", removeSavedCover);
 
 //functions
@@ -41,29 +41,42 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
 
-function randomBook() {
+function createRandomCover() {
   coverImg.src = covers[getRandomIndex(covers)];
   title.innerText = titles[getRandomIndex(titles)];
   descriptor1.innerText = descriptors[getRandomIndex(descriptors)];
   descriptor2.innerText = descriptors[getRandomIndex(descriptors)];
   currentCover = new Cover(coverImg.src, title.innerText, descriptor1.innerText, descriptor2.innerText);
 };
-
+//hidden.add.remove functions
 function pageButtonsMain() {
   mainCoverSection.classList.add("hidden");
-  randomButton.classList.add("hidden");
-  homeButton.classList.remove("hidden");
-  saveCoverButton.classList.add("hidden");
+  randomBtn.classList.add("hidden");
+  homeBtn.classList.remove("hidden");
+  saveCoverBtn.classList.add("hidden");
 };
 
-function hideForm() {
-  form.classList.add("hidden");
-};
 
-function formVisibility() {
+function formView() {
   pageButtonsMain();
   form.classList.remove("hidden");
   savedViewSection.classList.add("hidden");
+};
+
+function savedView() {
+  pageButtonsMain();
+  form.classList.add("hidden");
+  savedViewSection.classList.remove("hidden");
+  savedCoverGridView();
+};
+
+function homeView() {
+  form.classList.add("hidden");
+  mainCoverSection.classList.remove("hidden");
+  savedViewSection.classList.add("hidden");
+  homeBtn.classList.add("hidden");
+  randomBtn.classList.remove("hidden");
+  saveCoverBtn.classList.remove("hidden");
 };
 
 function savedCoverGridView() {
@@ -81,22 +94,6 @@ function savedCoverGridView() {
   }
 };
 
-function savedVisibility() {
-  pageButtonsMain();
-  hideForm();
-  savedViewSection.classList.remove("hidden");
-  savedCoverGridView();
-};
-
-function homeVisibility() {
-  hideForm();
-  mainCoverSection.classList.remove("hidden");
-  savedViewSection.classList.add("hidden");
-  homeButton.classList.add("hidden");
-  randomButton.classList.remove("hidden");
-  saveCoverButton.classList.remove("hidden");
-};
-
 function pushAndSetFieldValues() {
   covers.push(coverField.value);
   titles.push(titleField.value);
@@ -107,10 +104,10 @@ function pushAndSetFieldValues() {
   descriptor2.innerText = desc2Field.value;
 };
 
-function createNewBook(event) {
+function createNewCover(event) {
   event.preventDefault();
   if (coverField.value && titleField.value && desc1Field.value && desc2Field.value) {
-    homeVisibility();
+    homeView();
     pushAndSetFieldValues();
     currentCover = new Cover(coverField.value, titleField.value, desc1Field.value, desc2Field.value);
   } else {
